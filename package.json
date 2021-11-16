@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2-runtime start ./src/main.js --name node_app",
+    "start": "pm2-runtime start ./lib/main.js --name node_app",
     "stop": "pm2-runtime stop node_app ",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "npm run build -- --sourceMap && node ./lib/main.js"
   },
   "repository": {
     "type": "git",

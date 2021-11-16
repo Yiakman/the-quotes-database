@@ -10,7 +10,7 @@ type ElasticHits<T=Record<string, string>> = {
 
 export async function getQuotes(req: SearchQuery): Promise<SearchResults<QuoteData>> {
 
-  const query = {
+  const query: any = {
     query: {
       match: {
         quote: {
@@ -21,7 +21,9 @@ export async function getQuotes(req: SearchQuery): Promise<SearchResults<QuoteDa
       }
     }
   }
-
+  if (req.author) query.query.match.author = {
+    query: req.author, operator: 'and', fuzziness: 'auto'
+  }
   const { body: { hits } } = await esclient.search({
     from:  req.page  || 0,
     size:  req.limit || 100,

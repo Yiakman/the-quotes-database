@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-export type SearchQuery = { text: string, page: number, limit: number }
+export type SearchQuery = { text: string, page: number, limit: number, author?: string }
 export type SearchResults<T> = {
   results: number
   values: { id: string, score: number } & T
