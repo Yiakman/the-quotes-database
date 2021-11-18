@@ -1,6 +1,6 @@
-import express, { Application } from 'express'
+import express from 'express'
 import cors from 'cors'
-import { quotes } from './routes'
+import { quotes, ohsumed } from './routes'
 require('dotenv').config()
 
 const app  = express()
@@ -17,6 +17,7 @@ export function start(): void {
     .use(express.urlencoded({ extended: false }))
     .use(express.json())
     .use('/quotes', quotes)
+    .use('/ohsumed', ohsumed)
     .use((_req, res) => res.status(404).json({ success: false,error: 'Route not found' }))
     .listen(port, () => console.log(`Server ready on port ${port}`));
 }

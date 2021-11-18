@@ -29,5 +29,6 @@ export async function populateDatabase() {
     docs.push(quote);
   }
 
-  return elastic.esclient.bulk({ body: docs });
+  const result = await elastic.esclient.bulk({ body: docs });
+  return result
 }

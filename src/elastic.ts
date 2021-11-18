@@ -2,6 +2,7 @@ import { Client } from '@elastic/elasticsearch'
 require('dotenv').config()
 
 export const elasticUrl = process.env.ELASTIC_URL || 'http://localhost:9200'
+console.log(elasticUrl)
 export const esclient   = new Client({ node: elasticUrl })
 export const index      = 'quotes'
 export const type       = 'quotes'

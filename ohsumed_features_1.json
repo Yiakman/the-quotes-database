@@ -1,0 +1,32 @@
+{
+   "featureset": {
+        "features": [
+            {
+                "name": "title_query",
+                "params": [
+                    "text"
+                ],
+                "template_language": "mustache",
+                "template": {
+                    "match": {
+                        "title": "{{text}}"
+                    }
+                }
+            },
+            {
+                "name": "desm_w2v",
+                "params": [
+                    "query_vector"
+                ],
+                "template_language": "script_feature",
+                "template": {
+                    "lang": "painless",
+                    "source": "cosineSimilarity(params.query_vector, 'word2vec_centroid') + 1.0",
+                    "params": {
+                        "query_vector": "query_vector"
+                    }
+                }
+            }
+        ]
+   }
+}

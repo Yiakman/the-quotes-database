@@ -1,5 +1,7 @@
 import { Request, Response } from 'express'
 
+export type LTRResults = { name: string, value: number }[]
+
 export type SearchQuery = { text: string, page: number, limit: number, author?: string }
 export type SearchResults<T> = {
   results: number
@@ -11,3 +13,10 @@ export type SearchResponseBody<T> = {
 }
 export type SearchRequest<T> = Request<any, SearchResponseBody<T>, null, SearchQuery>
 export type SearchResponse<T> = Response<SearchResponseBody<T>>
+
+export type ElasticHits<T=Record<string, string>> = {
+  _id: string
+  _score: number
+  _source: T
+  fields: any
+}
